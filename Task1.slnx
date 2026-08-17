@@ -1,0 +1,16 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="RatingApp/RatingApp.csproj" />
+  <Project Path="RatingAppSetup/RatingAppSetup.wixproj">
+    <Platform Project="x86" />
+    <Build />
+  </Project>
+  <Project Path="SampleAppSetup/SampleAppSetup.wixproj">
+    <Platform Project="x86" />
+    <Build />
+  </Project>
+  <Project Path="Task1/Task1.csproj" />
+</Solution>
