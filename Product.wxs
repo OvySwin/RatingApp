@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+	<Product
+		Id="*"
+		Name="RatingApp"
+		Language="1033"
+		Version="1.0.0.0"
+		Manufacturer="SwinburneStudent"
+		UpgradeCode="38b4b694-eade-4cc2-9d4d-938ed2a3b33b">
+
+		<Package
+			InstallerVersion="200"
+			Compressed="yes"
+			InstallScope="perMachine" />
+
+		<MajorUpgrade
+			DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature
+			Id="ProductFeature"
+			Title="RatingApp"
+			Level="1">
+
+			<ComponentGroupRef Id="ProductComponents" />
+
+		</Feature>
+
+	</Product>
+
+	<Fragment>
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+
+			<Directory Id="ProgramFilesFolder">
+
+				<Directory
+					Id="INSTALLFOLDER"
+					Name="RatingApp" />
+
+			</Directory>
+
+		</Directory>
+
+	</Fragment>
+
+	<Fragment>
+
+		<ComponentGroup
+			Id="ProductComponents"
+			Directory="INSTALLFOLDER">
+
+			<!-- Main executable -->
+			<Component
+				Id="RatingAppExeComponent"
+				Guid="*">
+
+				<File
+					Id="RatingAppEXE"
+					Source="$(var.RatingApp.TargetDir)RatingApp.exe"
+					KeyPath="yes" />
+
+			</Component>
+
+			<!-- Main application DLL -->
+			<Component
+				Id="RatingAppDllComponent"
+				Guid="*">
+
+				<File
+					Id="RatingAppDLL"
+					Source="$(var.RatingApp.TargetDir)RatingApp.dll"
+					KeyPath="yes" />
+
+			</Component>
+
+			<!-- .NET dependency information -->
+			<Component
+				Id="RatingAppDepsComponent"
+				Guid="*">
+
+				<File
+					Id="RatingAppDeps"
+					Source="$(var.RatingApp.TargetDir)RatingApp.deps.json"
+					KeyPath="yes" />
+
+			</Component>
+
+			<!-- .NET runtime configuration -->
+			<Component
+				Id="RatingAppRuntimeComponent"
+				Guid="*">
+
+				<File
+					Id="RatingAppRuntime"
+					Source="$(var.RatingApp.TargetDir)RatingApp.runtimeconfig.json"
+					KeyPath="yes" />
+
+			</Component>
+
+			<!-- External DLL 1: Newtonsoft.Json -->
+			<Component
+				Id="NewtonsoftJsonComponent"
+				Guid="*">
+
+				<File
+					Id="NewtonsoftJsonDLL"
+					Source="$(var.RatingApp.TargetDir)Newtonsoft.Json.dll"
+					KeyPath="yes" />
+
+			</Component>
+
+			<!-- External DLL 2: Humanizer -->
+			<Component
+				Id="HumanizerComponent"
+				Guid="*">
+
+				<File
+					Id="HumanizerDLL"
+					Source="$(var.RatingApp.TargetDir)Humanizer.dll"
+					KeyPath="yes" />
+
+			</Component>
+
+		</ComponentGroup>
+
+	</Fragment>
+
+</Wix>
